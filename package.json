@@ -1,0 +1,19 @@
+{
+  "name": "locket",
+  "version": "1.0.0",
+  "description": "Lock something to open later 🔒🌸",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsbadr/locket.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itsbadr/locket/issues"
+  },
+  "homepage": "https://github.com/itsbadr/locket#readme"
+}
