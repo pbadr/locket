@@ -10,7 +10,7 @@ export class HttpProcessingService {
 
   constructor() { }
 
-  public handleError(error: HttpErrorResponse | any): Observable<never> {
+  public handleError(error: HttpErrorResponse | any): Observable<any> {
     let errorMessage: string;
 
     if (error.error instanceof ErrorEvent)
