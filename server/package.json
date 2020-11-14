@@ -12,8 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "devStart": "nodemon ./src/server.ts",
-    "start": "node ./build/server.ts",
+    "start": "nodemon ./src/server.ts",
     "build": "tsc"
   },
   "keywords": [],
