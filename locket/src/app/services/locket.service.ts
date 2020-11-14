@@ -21,4 +21,13 @@ export class LocketService {
         catchError(this.httpProessingService.handleError));
   }
 
+  public uploadFile(file: File): Observable<Object> {
+    return this.client.post<File>(serverURL + 'upload', file,
+      {
+        headers: {
+          "Content-Type": file.type
+        }
+      })
+  }
+
 }

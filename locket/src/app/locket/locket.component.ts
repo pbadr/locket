@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LocketService } from '../services/locket.service';
+
 
 @Component({
   selector: 'app-locket',
@@ -8,16 +8,9 @@ import { LocketService } from '../services/locket.service';
   styleUrls: ['./locket.component.scss']
 })
 export class LocketComponent implements OnInit {
-
-  constructor(private locketService: LocketService) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  addLocket(): void {
-    console.log("Adding locket..");
-    this.locketService.communicate()
-      .subscribe((data) => console.log(data))
   }
 
 }
