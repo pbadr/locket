@@ -5,7 +5,10 @@ import cors from "cors";
 app.use(cors());
 
 app.get("/communicate", (req: Request, res: Response) => {
-    res.status(200).send("communicated");
+    console.log("Hit the endpoint!");
+    res.status(200).json({
+        received: true,
+    });
 })
 
 app.listen(3000, () => {
