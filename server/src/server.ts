@@ -1,3 +1,5 @@
+import { textEncryption, textDecrypt } from "./util/encryption";
+
 import { PATH_TO_UPLOAD, readBuffer } from "./util/file";
 // express init and cors
 
