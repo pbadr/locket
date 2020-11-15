@@ -1,3 +1,10 @@
 <div>
-    <input #uploader type="file" (change)="uploadFile(uploader.files)" />
+    <form>
+        <div>
+            <input #uploader multiple name="file" type="file" (change)="uploadFile(uploader.files)" />
+        </div>
+        <div>
+            <button [disabled]="!this.filesUploaded" type="submit" (click)="sendFiles($event)">Upload</button>
+        </div>
+    </form>
 </div>
