@@ -5,9 +5,14 @@ dotenv.config({
     path: path.join(__dirname, '../.env')
 })
 
+interface EncryptionObject {
+    encryptedText: string,
+    iv: Buffer,
+}
+
 import crypto from "crypto";
 
-export function textEncryption(algorithm: string, text: string): any {
+export function textEncryption(algorithm: string, text: string): EncryptionObject {
 
     const secret = crypto.scryptSync(process.env.SECRET || '', 'salt', 24);
     const iv = crypto.randomBytes(16);
@@ -20,9 +25,8 @@ export function textEncryption(algorithm: string, text: string): any {
     }
 }
 
-export function textDecrypt(algorithm: string, encryption: string): string {
+export function textDecrypt(algorithm: string, encryption: string, iv: Buffer): string {
     const secret = crypto.scryptSync(process.env.SECRET || '', 'salt', 24);
-    const iv = crypto.randomBytes(16);
     const decipher = crypto.createDecipheriv(algorithm, secret, iv)
     const decryptedText = decipher.update(encryption, 'hex', 'utf8') + decipher.final('utf8');
 

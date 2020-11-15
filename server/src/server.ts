@@ -1,5 +1,11 @@
 import { textEncryption, textDecrypt } from "./util/encryption";
 
+// const enc = textEncryption("aes-192-cbc", "hello world")
+// console.log("encrypted text: ", enc.encryptedText)
+// const dec = textDecrypt("aes-192-cbc", enc.encryptedText, enc.iv)
+// console.log("decrypted text: ", dec)
+
+
 import { PATH_TO_UPLOAD, readBuffer } from "./util/file";
 // express init and cors
 
