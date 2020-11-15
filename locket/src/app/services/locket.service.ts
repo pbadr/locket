@@ -18,16 +18,21 @@ export class LocketService {
   public communicate(): Observable<Object> {
     return this.client.get<Object>(serverURL + 'communicate')
       .pipe(
-        catchError(this.httpProessingService.handleError));
+        catchError(this.httpProessingService.handleError)
+      );
   }
 
-  public uploadFile(file: File): Observable<Object> {
-    return this.client.post<File>(serverURL + 'upload', file,
-      {
-        headers: {
-          "Content-Type": file.type
-        }
-      })
+  public uploadFile(files: FormData, multiple: boolean): Observable<Object> {
+    if (multiple)
+      return this.client.post<FormData>(serverURL + 'uploadFiles', files)
+        .pipe(
+          catchError(this.httpProessingService.handleError)
+        );
+
+    return this.client.post<FormData>(serverURL + 'uploadFile', files)
+      .pipe(
+        catchError(this.httpProessingService.handleError)
+      );
   }
 
 }
