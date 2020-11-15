@@ -26,24 +26,12 @@ export class UploadComponent implements OnInit {
         this.file = files[0];
 
       this.files = files;
+
       this.filesUploaded = true;
 
     } else {
       console.log("Exceeded limit")
     }
-  }
-
-  private isAppropriateUploadSize(files: FileList): boolean {
-
-    const fileSizeLimitBytes: number = 100000
-    let filesSize: number = 0
-
-    for (var file of Array.from(files)) {
-      filesSize += file.size / 1000;
-    }
-
-    return filesSize <= fileSizeLimitBytes;
-
   }
 
   public sendFiles(event: Event): void {
@@ -76,10 +64,20 @@ export class UploadComponent implements OnInit {
           (res: Response) => console.log(res),
           (err: Error) => console.log(err)
         );
-
     }
 
   }
 
+  private isAppropriateUploadSize(files: FileList): boolean {
+
+    const fileSizeLimitBytes: number = 100000
+    let filesSize: number = 0
+
+    for (var file of Array.from(files)) {
+      filesSize += file.size / 1000;
+    }
+
+    return filesSize <= fileSizeLimitBytes;
+  }
 
 }
