@@ -1,9 +1,14 @@
 # locket
 Lock something to open later 🔒🌸
+### How does it work?
+Upload a file / Write some text, set a date to open 
+--> it then should encrypt it - it should only be available on the set date
 
-# Depenencies
-> angularjs 
-> rxjs
-> express
-> cors
-> multer
+## Depenencies
+```
+Angular
+
+express
+cors
+multer
+```
