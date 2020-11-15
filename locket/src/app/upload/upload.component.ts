@@ -1,6 +1,5 @@
 
 import { Component, OnInit } from '@angular/core';
-
 import { LocketService } from '../services/locket.service';
 
 @Component({
@@ -10,17 +9,25 @@ import { LocketService } from '../services/locket.service';
 })
 export class UploadComponent implements OnInit {
 
+  filesUploaded: boolean = false;
+  file: File;
+  files: FileList;
+
   constructor(private locketService: LocketService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   public uploadFile(files: FileList): void {
-    console.log("Uploading file..")
+    console.log("Processing files...")
 
     if (this.isAppropriateUploadSize(files)) {
-      this.locketService.uploadFile(files[0])
-        .subscribe((res: Response) => console.log(res, files[0].arrayBuffer()))
+
+      if (files.length < 2)
+        this.file = files[0];
+
+      this.files = files;
+      this.filesUploaded = true;
+
     } else {
       console.log("Exceeded limit")
     }
@@ -38,5 +45,41 @@ export class UploadComponent implements OnInit {
     return filesSize <= fileSizeLimitBytes;
 
   }
+
+  public sendFiles(event: Event): void {
+
+    event.preventDefault();
+
+    const formData = new FormData();
+
+    if (this.files.length < 2) {
+
+      console.log("Uploading single file...");
+      formData.append('file', this.file)
+
+      this.locketService.uploadFile(formData, false)
+        .subscribe(
+          (res: Response) => console.log(res),
+          (err: Error) => console.log(err)
+        );
+
+    } else {
+
+      console.log("Uploading multiple files...");
+
+      Array.from(this.files).forEach((file) => {
+        formData.append('files', file);
+      })
+
+      this.locketService.uploadFile(formData, true)
+        .subscribe(
+          (res: Response) => console.log(res),
+          (err: Error) => console.log(err)
+        );
+
+    }
+
+  }
+
 
 }
