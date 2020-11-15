@@ -8,10 +8,10 @@ app.use(cors());
 import multer from "multer";
 const storage = multer.diskStorage({
     destination: (req: Request, file, cb) => {
-        cb(null, './')
+        cb(null, './upload')
     },
     filename: (req: Request, file, cb) => {
-        cb(null, 'image')
+        cb(null, 'file')
     }
 })
 
