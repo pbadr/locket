@@ -1,6 +1,7 @@
 import fs from "fs";
 
-export const PATH_TO_UPLOAD = './upload/file-'
+export const PATH_TO_UPLOAD = './upload/'
+export const PATH_TO_UPLOAD_WITH_NAME = './upload/file-'
 
 export function readBuffer(path: string): void {
 
@@ -20,12 +21,10 @@ export function readBuffer(path: string): void {
             console.log("----------------------------------");
         });
 
-        deleteAfterBufferRead(path);
-
     });
 }
 
-function deleteAfterBufferRead(path: string) {
+function deleteFile(path: string) {
     try {
         fs.unlinkSync(path);
         console.log("Deleted file: ", path);

@@ -1,6 +1,6 @@
-import { textEncryption, textDecrypt } from "./util/encryption";
+import { textEncryption, textDecrypt, encryptFileToDisk, decryptFileToDisk } from "./util/encryption";
 
-import { PATH_TO_UPLOAD, readBuffer } from "./util/file";
+import { PATH_TO_UPLOAD_WITH_NAME, readBuffer } from "./util/file";
 // express init and cors
 
 import express, { Request, Response } from "express";
@@ -52,7 +52,10 @@ app.post("/uploadFile", upload.single('file'), (req: Request, res: Response) => 
         file
     });
 
-    readBuffer(PATH_TO_UPLOAD + file.originalname);
+    const enc = encryptFileToDisk(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
+
+    decryptFileToDisk(enc.pathToEncryptedFile, enc.iv)
+
 })
 
 app.post("/uploadFiles", upload.array('files'), (req: Request, res: Response) => {
@@ -65,7 +68,7 @@ app.post("/uploadFiles", upload.array('files'), (req: Request, res: Response) =>
         console.log("File name: ", file.originalname);
         console.log("File size: ", file.size);
 
-        readBuffer(PATH_TO_UPLOAD + file.originalname);
+        readBuffer(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
     }
 
     res.status(200).json({
