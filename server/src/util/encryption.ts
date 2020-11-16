@@ -20,7 +20,7 @@ export function textEncryption(algorithm: string, text: string): EncryptionObjec
 
     const secret: Buffer = fetchKey(24);
     const iv: Buffer = generateIV(16);
-    const cipher: crypto.Cipher = crypto.createCipheriv(algorithm, secret, iv)
+    const cipher: crypto.Cipher = crypto.createCipheriv(algorithm, secret, iv);
     const encryptedText: string = cipher.update(text, 'utf8', 'hex') + cipher.final('hex');
 
     return {
@@ -31,7 +31,7 @@ export function textEncryption(algorithm: string, text: string): EncryptionObjec
 
 export function textDecrypt(algorithm: string, encryption: string, iv: Buffer): string {
     const secret: Buffer = fetchKey(24);
-    const decipher: crypto.Decipher = crypto.createDecipheriv(algorithm, secret, iv)
+    const decipher: crypto.Decipher = crypto.createDecipheriv(algorithm, secret, iv);
     const decryptedText: string = decipher.update(encryption, 'hex', 'utf8') + decipher.final('utf8');
 
     return decryptedText
@@ -46,7 +46,7 @@ export function encryptFileToDisk(pathToFile: string): any {
     const PATH_TO_UPLOAD_WITH_NAME_ENCRYPTED = '' + PATH_TO_UPLOAD + 'encrypted/encrypted'
 
     const input = fs.createReadStream(pathToFile);
-    console.log("READING FILE BYTES BEFORE ENCRYPTION:")
+    console.log("READING FILE BYTES BEFORE ENCRYPTION:");
     readBuffer(pathToFile);
 
     try {
@@ -67,8 +67,6 @@ export function encryptFileToDisk(pathToFile: string): any {
         pathToEncryptedFile: PATH_TO_UPLOAD_WITH_NAME_ENCRYPTED + '.enc',
         iv
     }
-
-
 }
 
 export function decryptFileToDisk(pathToFile: string, iv: Buffer): void {
@@ -76,10 +74,7 @@ export function decryptFileToDisk(pathToFile: string, iv: Buffer): void {
     let dataEncryptionBuffer: Buffer;
 
     const secret: Buffer = fetchKey(32);
-
     const decipher = crypto.createDecipheriv("aes-256-cbc", secret, iv);
-
-
 
     fs.readFile(pathToFile, (err, data) => {
         if (err) throw err
@@ -87,10 +82,8 @@ export function decryptFileToDisk(pathToFile: string, iv: Buffer): void {
         dataEncryptionBuffer = data;
 
         const output = Buffer.concat([decipher.update(dataEncryptionBuffer), decipher.final()]);
-        fs.writeFileSync(PATH_TO_UPLOAD + 'decrypted', output);
+        fs.writeFileSync(PATH_TO_UPLOAD + 'decrypted.png', output);
     })
-
-
 
 }
 
@@ -101,4 +94,3 @@ function fetchKey(bytes: number): Buffer {
 function generateIV(bytes: number): Buffer {
     return crypto.randomBytes(bytes);
 }
-

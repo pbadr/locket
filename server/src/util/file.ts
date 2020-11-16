@@ -1,7 +1,7 @@
 import fs from "fs";
 
-export const PATH_TO_UPLOAD = './upload/'
-export const PATH_TO_UPLOAD_WITH_NAME = './upload/file-'
+export const PATH_TO_UPLOAD = './upload/';
+export const PATH_TO_UPLOAD_WITH_NAME = './upload/file-';
 
 export function readBuffer(path: string): void {
 
@@ -9,7 +9,7 @@ export function readBuffer(path: string): void {
 
         if (status) {
             console.log('Error: ', status.message);
-            return
+            return;
         }
 
         var buffer: Buffer = Buffer.alloc(100);
