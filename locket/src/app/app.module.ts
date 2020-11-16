@@ -3,11 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
 // Components
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { LocketComponent } from './locket/locket.component';
 import { UploadComponent } from './upload/upload.component';
 
@@ -20,7 +18,6 @@ import { serverURL } from './util/serverURL';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     LocketComponent,
     UploadComponent
   ],
