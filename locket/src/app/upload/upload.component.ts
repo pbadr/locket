@@ -5,7 +5,7 @@ import { LocketService } from '../services/locket.service';
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss']
+  styleUrls: ['./upload.component.scss', '../util/css/button.scss']
 })
 export class UploadComponent implements OnInit {
 

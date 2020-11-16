@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+.submit-button {
+    margin: 10px 0px;
+    background-color: rgb(4, 134, 194);
+    border: none;
+    border-radius: 5px;
+    padding: 15px 32px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+
+    box-shadow: none;
+}
+
+.submit-button:focus {
+    outline: none;
+}
+
+.submit-button:disabled {
+    background-color: rgba(4, 134, 194, 0.342);
+    cursor: not-allowed;
+}
+
+.code-font {
+    font-family: 'Roboto Mono', monospace;
+}

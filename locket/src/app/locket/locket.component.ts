@@ -5,7 +5,10 @@ import { LocketService } from '../services/locket.service';
 @Component({
   selector: 'app-locket',
   templateUrl: './locket.component.html',
-  styleUrls: ['./locket.component.scss']
+  styleUrls: [
+    './locket.component.scss',
+    '../util/css/button.scss',
+    '../util/css/text-input.scss']
 })
 export class LocketComponent implements OnInit {
 

@@ -4,7 +4,8 @@
             <input #uploader multiple name="file" type="file" (change)="uploadFile(uploader.files)" />
         </div>
         <div>
-            <button [disabled]="!this.filesUploaded" type="submit" (click)="sendFiles($event)">Upload</button>
+            <button class="submit-button" style="padding: 10px 32px;" [disabled]="!this.filesUploaded" type="submit"
+                (click)="sendFiles($event)">Upload</button>
         </div>
     </form>
 </div>
