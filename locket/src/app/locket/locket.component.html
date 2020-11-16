@@ -1,3 +1,21 @@
 <div>
     <app-upload></app-upload>
+    <div>
+        <form>
+            <label for="encryption">Text</label>
+            <br />
+            <textarea #textAreaInput name="encryption" type="text" rows="5"
+                (input)="onTextEnter(textAreaInput.value)"></textarea>
+            <br />
+            <button type="submit" [disabled]="textValue.length < 5" (click)="textSubmit($event)">Encrypt and
+                send</button>
+        </form>
+        <br />
+        <div *ngIf="encryptedTextObject">
+            <h4>Encrypted text:
+                <pre><code> {{ encryptedTextObject | json }}</code></pre>
+            </h4>
+        </div>
+
+    </div>
 </div>
