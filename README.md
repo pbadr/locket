@@ -11,4 +11,5 @@ Angular
 express
 cors
 multer
+mongoose
 ```
