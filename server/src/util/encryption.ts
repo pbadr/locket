@@ -3,7 +3,8 @@ import path from "path";
 
 import fs from "fs";
 
-import { PATH_TO_UPLOAD_WITH_NAME, PATH_TO_UPLOAD, readBuffer } from "./file";
+import { PATH_TO_UPLOAD_WITH_NAME, PATH_TO_UPLOAD, readBuffer, deleteFile } from "./file";
+import FileType, { FileTypeResult } from 'file-type';
 
 dotenv.config({
     path: path.join(__dirname, '../.env')
@@ -69,20 +70,31 @@ export function encryptFileToDisk(pathToFile: string): any {
     }
 }
 
-export function decryptFileToDisk(pathToFile: string, iv: Buffer): void {
+export async function decryptFileToDisk(pathToFile: string, iv: Buffer) {
 
     let dataEncryptionBuffer: Buffer;
 
     const secret: Buffer = fetchKey(32);
     const decipher = crypto.createDecipheriv("aes-256-cbc", secret, iv);
 
-    fs.readFile(pathToFile, (err, data) => {
+    fs.readFile(pathToFile, async (err, data) => {
         if (err) throw err
 
         dataEncryptionBuffer = data;
 
         const output = Buffer.concat([decipher.update(dataEncryptionBuffer), decipher.final()]);
-        fs.writeFileSync(PATH_TO_UPLOAD + 'decrypted.png', output);
+
+        FileType.fromBuffer(output)
+            .then(fileObject => {
+                var fileType: FileTypeResult | undefined = fileObject
+                fs.writeFileSync(PATH_TO_UPLOAD + 'decrypted.' + fileType?.ext, output);
+                console.log("Successfully written decrypted file to disk!");
+            })
+            .catch(err => {
+                console.log("Error getting file type from encrypted file! - ", err);
+            });
+
+
     })
 
 }
