@@ -19,12 +19,13 @@ export function readBuffer(path: string): void {
             console.log("----------------------------------");
             console.log(buffer.toString('utf-8', 0, num));
             console.log("----------------------------------");
+
         });
 
     });
 }
 
-function deleteFile(path: string) {
+export function deleteFile(path: string) {
     try {
         fs.unlinkSync(path);
         console.log("Deleted file: ", path);
