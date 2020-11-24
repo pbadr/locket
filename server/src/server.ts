@@ -54,7 +54,7 @@ app.post("/uploadFile", upload.single('file'), async (req: Request, res: Respons
 
     const enc = encryptFileToDisk(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
 
-    await decryptFileToDisk(enc.pathToEncryptedFile, enc.iv);
+    decryptFileToDisk(enc.pathToEncryptedFile, enc.iv);
 
     deleteFile(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
 

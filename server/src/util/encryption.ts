@@ -70,7 +70,7 @@ export function encryptFileToDisk(pathToFile: string): any {
     }
 }
 
-export async function decryptFileToDisk(pathToFile: string, iv: Buffer) {
+export function decryptFileToDisk(pathToFile: string, iv: Buffer): void {
 
     let dataEncryptionBuffer: Buffer;
 
