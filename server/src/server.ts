@@ -1,6 +1,6 @@
 import { textEncryption, textDecrypt, encryptFileToDisk, decryptFileToDisk } from "./util/encryption";
 
-import { PATH_TO_UPLOAD_WITH_NAME, readBuffer } from "./util/file";
+import { deleteFile, PATH_TO_UPLOAD_WITH_NAME, readBuffer } from "./util/file";
 // express init and cors
 
 import express, { Request, Response } from "express";
@@ -39,7 +39,7 @@ app.get("/communicate", (req: Request, res: Response) => {
 
 // uploading routes
 
-app.post("/uploadFile", upload.single('file'), (req: Request, res: Response) => {
+app.post("/uploadFile", upload.single('file'), async (req: Request, res: Response) => {
 
     console.log("Uploading single file...");
 
@@ -54,7 +54,9 @@ app.post("/uploadFile", upload.single('file'), (req: Request, res: Response) => 
 
     const enc = encryptFileToDisk(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
 
-    decryptFileToDisk(enc.pathToEncryptedFile, enc.iv);
+    await decryptFileToDisk(enc.pathToEncryptedFile, enc.iv);
+
+    deleteFile(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
 
 })
 
