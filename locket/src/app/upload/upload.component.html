@@ -1,11 +1,29 @@
-<div>
+<div class="upload-container">
     <form>
         <div>
-            <input #uploader multiple name="file" type="file" (change)="uploadFile(uploader.files)" />
+            <label for="upload-button" class="custom-upload-button">
+                <span><img class="upload-file-icon" src="../../assets/upload-file.png" /></span>Custom Upload
+            </label>
+            <input id="upload-button" class="upload-button" #uploader multiple name="file" type="file"
+                (change)="uploadFile(uploader.files)" />
         </div>
         <div>
             <button class="submit-button" style="padding: 10px 32px;" [disabled]="!this.filesUploaded" type="submit"
-                (click)="sendFiles($event)">Upload</button>
+                (click)="sendFiles($event)">
+                <span>
+                    <img class="encrypt-icon" src="../../assets/lock-file.png" />
+                </span>
+                <div class="encrypt-text">
+                    Upload and encrypt
+                </div>
+            </button>
         </div>
     </form>
+    <div class="upload-list-container">
+        <li class="upload-list" *ngFor="let file of filesList">
+            <div class="file-list">
+                <code>{{ file.name }}</code> <span (click)="removeFile(file)">🗑️</span>
+            </div>
+        </li>
+    </div>
 </div>

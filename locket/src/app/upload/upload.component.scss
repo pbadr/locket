@@ -1,0 +1,62 @@
+.upload-container {
+    text-align: center;
+    align-items: center;
+}
+
+/* Hiding upload button and styling it*/
+
+.upload-button {
+	display: none;
+}
+
+.custom-upload-button {
+    background-color: rgb(4, 134, 194);
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-file-icon {
+    filter: brightness(0) invert(1);
+    width: 25px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.custom-upload-button:hover .upload-file-icon {
+    transform: rotate(10deg);
+}
+
+/* Hiding upload button and styling it */
+
+.encrypt-icon {
+    filter: brightness(0) invert(1);
+    width: 25px;
+}
+
+.encrypt-text {
+    position: relative;
+    margin-left: 5px;
+    display: inline;
+    bottom: 5px;
+}
+
+.upload-list {
+    list-style: none;
+    display: inline-block;
+}
+
+.file-list {
+    background-color: rgb(51, 51, 51);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: max-content;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in;
+}
+
+.file-list:hover {
+    background-color: rgb(32, 32, 32);
+}
