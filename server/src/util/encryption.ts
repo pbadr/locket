@@ -3,11 +3,11 @@ import path from "path";
 
 import fs from "fs";
 
-import { PATH_TO_UPLOAD_WITH_NAME, PATH_TO_UPLOAD, readFileBuffer } from "./file";
+import { PATH_TO_UPLOAD } from "./file";
 import FileType, { FileTypeResult } from 'file-type';
 
 dotenv.config({
-    path: path.join(__dirname, '../.env')
+    path: path.join(__dirname, '../.env'),
 })
 
 interface EncryptionObject {
