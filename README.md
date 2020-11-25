@@ -12,4 +12,5 @@ express
 cors
 multer
 mongoose
+file-type
 ```
