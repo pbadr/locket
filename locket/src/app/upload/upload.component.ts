@@ -11,11 +11,15 @@ export class UploadComponent implements OnInit {
 
   filesUploaded: boolean = false;
   file: File;
-  files: FileList;
+  filesList: File[] = [];
 
   constructor(private locketService: LocketService) { }
 
   ngOnInit(): void { }
+
+  public removeFile(file: File): void {
+    this.filesList = this.filesList.filter(fileItem => fileItem !== file)
+  }
 
   public uploadFile(files: FileList): void {
     console.log("Processing files...")
@@ -25,7 +29,11 @@ export class UploadComponent implements OnInit {
       if (files.length < 2)
         this.file = files[0];
 
-      this.files = files;
+      else {
+        Array.from(files).forEach(file => {
+          this.filesList.push(file);
+        })
+      }
 
       this.filesUploaded = true;
 
@@ -34,13 +42,15 @@ export class UploadComponent implements OnInit {
     }
   }
 
+  // SENDING FILES
+
   public sendFiles(event: Event): void {
 
     event.preventDefault();
 
     const formData = new FormData();
 
-    if (this.files.length < 2) {
+    if (this.filesList.length < 2) {
 
       console.log("Uploading single file...");
       formData.append('file', this.file)
@@ -55,7 +65,7 @@ export class UploadComponent implements OnInit {
 
       console.log("Uploading multiple files...");
 
-      Array.from(this.files).forEach((file) => {
+      this.filesList.forEach((file) => {
         formData.append('files', file);
       })
 
