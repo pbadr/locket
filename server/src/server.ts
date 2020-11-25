@@ -48,15 +48,28 @@ app.post("/uploadFile", upload.single('file'), async (req: Request, res: Respons
 
     const enc = encryptFileToDisk(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
 
-    decryptFileToDisk(enc.pathToEncryptedFile, enc.iv);
+    try {
+        decryptFileToDisk(enc.pathToEncryptedFile, enc.iv);
 
-    deleteFile(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
+        deleteFile(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
 
-    res.status(200).json({
-        received: true,
-        encrypted: true,
-    });
+        res.status(200).json({
+            received: true,
+            encrypted: true,
+        });
 
+    } catch (err) {
+
+        console.log(err);
+
+        // teapot ☕
+
+        res.status(418).json({
+            received: true,
+            encrypted: false,
+            err
+        });
+    }
 })
 
 app.post("/uploadFiles", upload.array('files'), (req: Request, res: Response) => {
