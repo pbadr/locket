@@ -1,0 +1,26 @@
+.locket-container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.encryption-label {
+    position: relative;
+    font-size: 12px;
+    top: 20px;
+    right: 50px;
+    background-color: rgb(17, 17, 17);
+    padding: 2px 9px;
+    border-radius: 10px;
+}
+
+.encrypt-icon {
+    filter: brightness(0) invert(1);
+    width: 20px;
+}
+
+.encrypt-text {
+    position: relative; 
+    margin-left: 10px; 
+    display: inline; 
+    bottom: 3px;
+}
