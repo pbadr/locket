@@ -5,12 +5,13 @@
 
 .encryption-label {
     position: relative;
-    font-size: 12px;
+    font-size: 15px;
     top: 20px;
     right: 50px;
     background-color: rgb(17, 17, 17);
     padding: 2px 9px;
-    border-radius: 10px;
+    border-radius: 4px;
+    transition: top 0.2s ease-in-out, right 0.2s ease-in-out, font-size 0.2s ease;
 }
 
 .encrypt-icon {
@@ -23,4 +24,12 @@
     margin-left: 10px; 
     display: inline; 
     bottom: 3px;
+}
+
+/* text-input animation */
+
+.text-input-focus {
+    top: 5px;
+    right: 45px;
+    font-size: 12px;
 }

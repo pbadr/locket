@@ -2,7 +2,8 @@
     <app-upload></app-upload>
     <div>
         <form>
-            <label class="encryption-label" for="encryption">Enter your thoughts</label>
+            <label class="encryption-label" [ngClass]="{'text-input-focus': textValue.length > 0}"
+                for="encryption">Enter your thoughts</label>
             <br />
             <textarea class="text-input" #textAreaInput name="encryption" type="text"
                 (input)="onTextEnter(textAreaInput.value)"></textarea>
