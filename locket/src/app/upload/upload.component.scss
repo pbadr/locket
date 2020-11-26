@@ -48,6 +48,7 @@
     left: 25px;
     font-size: x-small;
     color: rgb(187, 4, 4);
+    animation: limit-text-warning 1s ease-in;
 }
 
 .upload-list {
@@ -67,4 +68,20 @@
 
 .file-list:hover {
     background-color: rgb(49, 34, 34);
+}
+
+/* limit-text animation */
+
+@keyframes limit-text-warning {
+    0% {
+        color: rgb(187, 4, 4);
+    }
+
+    50% {
+        color: rgb(255, 0, 0);
+    }
+
+    100% {
+        color: rgb(187, 4, 4);
+    }
 }
