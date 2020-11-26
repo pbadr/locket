@@ -10,6 +10,7 @@ import { LocketService } from '../services/locket.service';
 export class UploadComponent implements OnInit {
 
   filesUploaded: boolean = false;
+  exceededLimit: boolean = false;
   file: File;
   filesList: File[] = [];
 
@@ -26,7 +27,7 @@ export class UploadComponent implements OnInit {
 
     if (this.isAppropriateUploadSize(files)) {
 
-      if (files.length < 2)
+      if (files.length < 2 && files.length > 0)
         this.filesList.push(files[0])
 
       else {
@@ -36,9 +37,11 @@ export class UploadComponent implements OnInit {
       }
 
       this.filesUploaded = true;
+      this.exceededLimit = false;
 
     } else {
-      console.log("Exceeded limit")
+      console.log("Exceeded limit");
+      this.exceededLimit = true;
     }
   }
 
@@ -86,14 +89,14 @@ export class UploadComponent implements OnInit {
 
   private isAppropriateUploadSize(files: FileList): boolean {
 
-    const fileSizeLimitBytes: number = 100000
+    const fileSizeLimitKiloBytes: number = 100000
     let filesSize: number = 0
 
     for (var file of Array.from(files)) {
       filesSize += file.size / 1000;
     }
 
-    return filesSize <= fileSizeLimitBytes;
+    return filesSize <= fileSizeLimitKiloBytes;
   }
 
 }

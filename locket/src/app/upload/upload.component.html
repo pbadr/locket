@@ -18,6 +18,9 @@
                 </div>
             </button>
         </div>
+        <div *ngIf="this.exceededLimit" class="limit-text">
+            You may only upload less than 100 MB
+        </div>
     </form>
     <div class="upload-list-container">
         <li class="upload-list" *ngFor="let file of filesList">
