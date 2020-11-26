@@ -4,6 +4,7 @@ import path from "path";
 import fs from "fs";
 
 import { PATH_TO_UPLOAD } from "./file";
+import getFileFromExtension from "./extention"
 import FileType, { FileTypeResult } from 'file-type';
 
 dotenv.config({
@@ -38,12 +39,12 @@ export function textDecrypt(algorithm: string, encryption: string, iv: Buffer): 
     return decryptedText
 }
 
-export function encryptFileToDisk(pathToFile: string): any {
+export function encryptFileToDisk(fileName: string, pathToFile: string): any {
     const secret: Buffer = fetchKey(32);
     const iv: Buffer = generateIV(16);
     const cipher = crypto.createCipheriv("aes-256-cbc", secret, iv);
 
-    const PATH_TO_UPLOAD_WITH_NAME_ENCRYPTED = PATH_TO_UPLOAD + 'encrypted/encrypted';
+    const PATH_TO_UPLOAD_WITH_NAME_ENCRYPTED = PATH_TO_UPLOAD + `encrypted/${getFileFromExtension(fileName)}`;
     try {
         const encryptedFile = fs.createWriteStream(PATH_TO_UPLOAD_WITH_NAME_ENCRYPTED + '.enc');
 
@@ -65,7 +66,7 @@ export function encryptFileToDisk(pathToFile: string): any {
     }
 }
 
-export function decryptFileToDisk(pathToFile: string, iv: Buffer): void {
+export function decryptFileToDisk(fileName: string, pathToFile: string, iv: Buffer): void {
 
     const secret: Buffer = fetchKey(32);
     const decipher = crypto.createDecipheriv("aes-256-cbc", secret, iv);
@@ -82,7 +83,7 @@ export function decryptFileToDisk(pathToFile: string, iv: Buffer): void {
             .then(fileObject => {
 
                 var fileType: FileTypeResult | undefined = fileObject
-                fs.writeFileSync(PATH_TO_UPLOAD + 'decrypted.' + fileType?.ext, decryptedFile);
+                fs.writeFileSync(PATH_TO_UPLOAD + `${getFileFromExtension(fileName)}.` + fileType?.ext, decryptedFile);
                 console.log("decryptFileToDisk: Successfully written decrypted file to disk!");
             })
             .catch(err => {

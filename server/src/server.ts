@@ -46,10 +46,10 @@ app.post("/uploadFile", upload.single('file'), async (req: Request, res: Respons
     console.log("/uploadFiles - File name: ", file.filename);
     console.log("/uploadFiles - File size: ", file.size);
 
-    const enc = encryptFileToDisk(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
+    const enc = encryptFileToDisk(file.originalname, PATH_TO_UPLOAD_WITH_NAME + file.originalname);
 
     try {
-        decryptFileToDisk(enc.pathToEncryptedFile, enc.iv);
+        decryptFileToDisk(file.originalname, enc.pathToEncryptedFile, enc.iv);
 
         deleteFile(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
 
