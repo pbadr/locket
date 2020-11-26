@@ -27,7 +27,7 @@ export class UploadComponent implements OnInit {
     if (this.isAppropriateUploadSize(files)) {
 
       if (files.length < 2)
-        this.file = files[0];
+        this.filesList.push(files[0])
 
       else {
         Array.from(files).forEach(file => {
@@ -53,11 +53,14 @@ export class UploadComponent implements OnInit {
     if (this.filesList.length < 2) {
 
       console.log("Uploading single file...");
-      formData.append('file', this.file)
+      formData.append('file', this.filesList[0])
 
       this.locketService.uploadFile(formData, false)
         .subscribe(
-          (res: Response) => console.log(res),
+          (res: Response) => {
+            console.log(res);
+            this.filesList.length = 0;
+          },
           (err: Error) => console.log(err)
         );
 
@@ -71,7 +74,10 @@ export class UploadComponent implements OnInit {
 
       this.locketService.uploadFile(formData, true)
         .subscribe(
-          (res: Response) => console.log(res),
+          (res: Response) => {
+            console.log(res);
+            this.filesList.length = 0;
+          },
           (err: Error) => console.log(err)
         );
     }
