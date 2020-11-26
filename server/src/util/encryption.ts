@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs";
 
 import { PATH_TO_UPLOAD } from "./file";
-import getFileFromExtension from "./extention"
+import getFileNameFromExtension from "./extension"
 import FileType, { FileTypeResult } from 'file-type';
 
 dotenv.config({
@@ -44,7 +44,7 @@ export function encryptFileToDisk(fileName: string, pathToFile: string): any {
     const iv: Buffer = generateIV(16);
     const cipher = crypto.createCipheriv("aes-256-cbc", secret, iv);
 
-    const PATH_TO_UPLOAD_WITH_NAME_ENCRYPTED = PATH_TO_UPLOAD + `encrypted/${getFileFromExtension(fileName)}`;
+    const PATH_TO_UPLOAD_WITH_NAME_ENCRYPTED = PATH_TO_UPLOAD + `encrypted/${getFileNameFromExtension(fileName)}`;
     try {
         const encryptedFile = fs.createWriteStream(PATH_TO_UPLOAD_WITH_NAME_ENCRYPTED + '.enc');
 
@@ -83,7 +83,7 @@ export function decryptFileToDisk(fileName: string, pathToFile: string, iv: Buff
             .then(fileObject => {
 
                 var fileType: FileTypeResult | undefined = fileObject
-                fs.writeFileSync(PATH_TO_UPLOAD + `${getFileFromExtension(fileName)}.` + fileType?.ext, decryptedFile);
+                fs.writeFileSync(PATH_TO_UPLOAD + `${getFileNameFromExtension(fileName)}.` + fileType?.ext, decryptedFile);
                 console.log("decryptFileToDisk: Successfully written decrypted file to disk!");
             })
             .catch(err => {
