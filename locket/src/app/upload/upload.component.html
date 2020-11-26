@@ -21,8 +21,8 @@
     </form>
     <div class="upload-list-container">
         <li class="upload-list" *ngFor="let file of filesList">
-            <div class="file-list">
-                <code>{{ file.name }}</code> <span (click)="removeFile(file)">🗑️</span>
+            <div class="file-list" (click)="removeFile(file)">
+                <code>{{ file.name }}</code>
             </div>
         </li>
     </div>
