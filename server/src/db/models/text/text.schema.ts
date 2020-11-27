@@ -1,15 +1,16 @@
 import mongoose, { Schema } from "mongoose";
+import { Text } from "./text";
 
-export default mongoose.model(
+export default mongoose.model<Text>(
 
-    "Text",
+    "text",
 
     new Schema({
         textEncryption: {
             type: Schema.Types.String,
             required: true,
         },
-        textBytes: {
+        iv: {
             type: Schema.Types.Buffer,
             required: true,
         },
