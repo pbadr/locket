@@ -72,4 +72,32 @@ router.route("/get").get((req: Request, res: Response) => {
 
 });
 
+router.route("/get/all").get(async (req: Request, res: Response) => {
+
+    TextModel.find()
+        .then(encryptedTexts => {
+
+            if (encryptedTexts.length > 0) {
+                res.status(200).send(encryptedTexts)
+
+                return;
+            }
+
+            res.status(200).json({
+                message: "Add more to get",
+            })
+
+        })
+        .catch(error => {
+
+            res.status(400).json({
+                message: "Could not get the documents",
+                error,
+            })
+
+        })
+
+
+})
+
 export = router;
