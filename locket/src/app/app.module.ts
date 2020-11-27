@@ -14,12 +14,14 @@ import { LocketService } from './services/locket.service';
 import { HttpProcessingService } from './services/http-processing.service';
 
 import { serverURL } from './util/serverURL';
+import { TextsComponent } from './texts/texts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LocketComponent,
-    UploadComponent
+    UploadComponent,
+    TextsComponent
   ],
   imports: [
     BrowserModule,
