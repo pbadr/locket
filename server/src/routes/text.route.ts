@@ -6,6 +6,8 @@ const router = Router();
 
 import { textEncrypt, textDecrypt } from "../util/encryption";
 
+// Saving text route
+
 router.route("/save").post((req: Request, res: Response): void => {
     console.log("/text/save - Saving text...");
     console.log("/text/save - Received text: ", req.body.text);
@@ -25,9 +27,21 @@ router.route("/save").post((req: Request, res: Response): void => {
                 received: true,
                 savedText
             });
+
+            return;
+        })
+        .catch(error => {
+            console.log("/text/save - Error saving document!", error);
+
+            res.status(400).json({
+                status: 400,
+                error
+            });
         });
 
 });
+
+// Getting encrypted text route
 
 router.route("/get").get((req: Request, res: Response) => {
 
@@ -51,11 +65,11 @@ router.route("/get").get((req: Request, res: Response) => {
 
             res.status(200).json({
                 decryptedText
-            })
+            });
 
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
 
-})
+});
 
 export = router;
