@@ -36,7 +36,7 @@ export class LocketService {
   }
 
   public sendTextToEncrypt(text: object): Observable<Object> {
-    return this.client.post<object>(serverURL + 'receiveTextToEncrypt', text)
+    return this.client.post<object>(serverURL + 'text/save', text)
       .pipe(
         catchError(this.httpProessingService.handleError)
       );
