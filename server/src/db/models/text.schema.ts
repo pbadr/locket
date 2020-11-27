@@ -5,7 +5,7 @@ export default mongoose.model(
     "Text",
 
     new Schema({
-        text: {
+        textEncryption: {
             type: Schema.Types.String,
             required: true,
         },
