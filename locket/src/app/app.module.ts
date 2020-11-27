@@ -15,13 +15,15 @@ import { HttpProcessingService } from './services/http-processing.service';
 
 import { serverURL } from './util/serverURL';
 import { TextsComponent } from './texts/texts.component';
+import { TextComponent } from './text/text.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LocketComponent,
     UploadComponent,
-    TextsComponent
+    TextsComponent,
+    TextComponent
   ],
   imports: [
     BrowserModule,
