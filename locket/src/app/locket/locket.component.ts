@@ -14,10 +14,16 @@ export class LocketComponent implements OnInit {
 
   textValue: string = '';
   encryptedTextObject: object;
+  inputFocused: boolean = false;
 
   constructor(private locketService: LocketService) { }
 
   ngOnInit(): void {
+  }
+
+  public inputText(): void {
+    this.inputFocused = !this.inputFocused;
+    console.log(this.inputFocused);
   }
 
   public onTextEnter(textValue: string): void {
@@ -35,10 +41,11 @@ export class LocketComponent implements OnInit {
     this.locketService.sendTextToEncrypt(textObject)
       .subscribe((response: Response | any) => {
         console.log(response);
+
         this.encryptedTextObject = {
-          text: response.encryptedText,
-          bytes: response.bytes
+          text: response.savedText,
         }
+
       },
         (error: Error) => console.log(error))
   }

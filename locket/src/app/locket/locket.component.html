@@ -2,11 +2,11 @@
     <app-upload></app-upload>
     <div>
         <form>
-            <label class="encryption-label" [ngClass]="{'text-input-focus': textValue.length > 0}"
-                for="encryption">Enter your thoughts</label>
+            <label class="encryption-label" [ngClass]="{'text-input-focus': this.inputFocused}" for="encryption">Enter
+                your thoughts</label>
             <br />
-            <textarea class="text-input" #textAreaInput name="encryption" type="text"
-                (input)="onTextEnter(textAreaInput.value)"></textarea>
+            <textarea (blur)="inputText()" (focus)="inputText()" class="text-input" #textAreaInput name="encryption"
+                type="text" (input)="onTextEnter(textAreaInput.value)"></textarea>
             <br />
             <div *ngIf="textValue.length < 5">
             </div>
@@ -17,9 +17,9 @@
             </button>
         </form>
         <br />
-        <div *ngIf="encryptedTextObject">
+        <div class="encrypted-text-object" *ngIf="encryptedTextObject">
             <h4>Encrypted text:
-                <pre><code class="code-font">{{ encryptedTextObject | json }}</code></pre>
+                <pre class="encrypted-text-json"><code>{{ encryptedTextObject | json }}</code></pre>
             </h4>
         </div>
 

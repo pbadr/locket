@@ -26,6 +26,17 @@
     bottom: 3px;
 }
 
+
+.encrypted-text-object {
+    background-color: rgb(24, 24, 24);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.encrypted-text-json {
+    white-space: pre-wrap;
+}
+
 /* text-input animation */
 
 .text-input-focus {
