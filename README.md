@@ -8,13 +8,14 @@ Upload a file / Write some text, set a date to open
 Frontend:  
 ```
 Angular
+@types/node
 ```
 
 Server:
 ```
-express
-cors
-multer
-mongoose
-file-type
+express    (@types/express)
+cors       (@types/cors)
+multer     (@types/multer)
+mongoose   (@types/mongoose)
+file-type  (@types/file-type)
 ```
