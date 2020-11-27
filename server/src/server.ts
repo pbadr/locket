@@ -96,20 +96,9 @@ app.post("/uploadFiles", upload.array('files'), (req: Request, res: Response) =>
     });
 });
 
-app.post("/receiveTextToEncrypt", (req: Request, res: Response) => {
+// Routes 
 
-    const textToEncrypt = req.body.text;
-    console.log("/receiveTextToEncrypt - Encrypting text... ", textToEncrypt);
-
-    const enc = textEncrypt("aes-192-cbc", textToEncrypt);
-    console.log("/receiveTextToEncrypt - Encrypted text: ", enc.encryptedText);
-
-    res.status(200).json({
-        received: true,
-        encryptedText: enc.encryptedText,
-        bytes: enc.iv,
-    });
-});
+app.use("/text", require("./routes/text.route"));
 
 app.listen(3000, () => {
     console.log('server started at port 3000...');
