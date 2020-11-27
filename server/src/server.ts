@@ -1,5 +1,10 @@
 import { textEncrypt, encryptFileToDisk, decryptFileToDisk } from "./util/encryption";
 
+// Init database
+
+import MongoDB from "./db/db";
+const database: MongoDB = new MongoDB();
+
 import { deleteFile, PATH_TO_UPLOAD_WITH_NAME, readFileBuffer } from "./util/file";
 // express init and cors
 
