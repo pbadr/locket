@@ -7,6 +7,8 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpProcessingService } from '../services/http-processing.service';
 import { serverURL } from '../util/serverURL';
 
+import Text from '../util/type/text';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,13 @@ export class LocketService {
         );
 
     return this.client.post<FormData>(serverURL + 'uploadFile', files)
+      .pipe(
+        catchError(this.httpProessingService.handleError)
+      );
+  }
+
+  public getEncryptedTexts(): Observable<Text[]> {
+    return this.client.get<Text[]>(serverURL + "text/get/all")
       .pipe(
         catchError(this.httpProessingService.handleError)
       );
