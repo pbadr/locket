@@ -8,7 +8,7 @@
                 (change)="uploadFile(uploader.files)" />
         </div>
         <div>
-            <button class="submit-button" style="padding: 10px 32px;" [disabled]="!this.filesUploaded" type="submit"
+            <button class="submit-button" style="padding: 10px 32px;" [disabled]="filesList.length == 0" type="submit"
                 (click)="sendFiles($event)">
                 <span>
                     <img class="encrypt-icon" src="../../assets/lock-file.png" />

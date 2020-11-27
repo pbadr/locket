@@ -9,7 +9,6 @@ import { LocketService } from '../services/locket.service';
 })
 export class UploadComponent implements OnInit {
 
-  filesUploaded: boolean = false;
   exceededLimit: boolean = false;
   file: File;
   filesList: File[] = [];
@@ -36,7 +35,6 @@ export class UploadComponent implements OnInit {
         })
       }
 
-      this.filesUploaded = true;
       this.exceededLimit = false;
 
     } else {
