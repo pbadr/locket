@@ -87,16 +87,39 @@ app.post("/uploadFiles", upload.array('files'), (req: Request, res: Response) =>
         console.log("/uploadFiles - File name: ", file.originalname);
         console.log("/uploadFiles - File size: ", file.size);
 
-        readFileBuffer(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
+        const enc = encryptFileToDisk(file.originalname, PATH_TO_UPLOAD_WITH_NAME + file.originalname);
+
+        try {
+
+            decryptFileToDisk(file.originalname, enc.pathToEncryptedFile, enc.iv);
+
+            deleteFile(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
+
+            res.status(200).json({
+                received: true,
+                encrypted: true,
+            });
+
+            return;
+
+        } catch (err) {
+
+            console.log(err);
+
+            // teapot ☕
+
+            res.status(418).json({
+                received: true,
+                encrypted: false,
+                err
+            });
+        }
     }
 
-    res.status(200).json({
-        received: true,
-        files
-    });
 });
 
-// Routes 
+/*  Routes */
+// Text
 
 app.use("/text", require("./routes/text.route"));
 
