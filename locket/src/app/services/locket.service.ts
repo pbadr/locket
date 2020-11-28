@@ -55,6 +55,13 @@ export class LocketService {
       );
   }
 
+  public deleteEncryption(id: string): Observable<Text> {
+    return this.client.delete<Text>(serverURL + `text/delete/${id}`)
+      .pipe(
+        catchError(this.httpProessingService.handleError)
+      )
+  }
+
   public reflectChanges(changes: Text) {
     this.encryptedTexts.next(changes);
   }

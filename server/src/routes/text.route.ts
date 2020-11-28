@@ -98,4 +98,28 @@ router.route("/get/all").get(async (req: Request, res: Response) => {
 
 })
 
+router.route("/delete/:id").delete(async (req: Request, res: Response) => {
+
+    const { id } = req.params;
+
+    TextModel.deleteOne({
+        _id: id
+    })
+        .then(deleted => {
+
+            res.status(200).json({
+                deleted
+            })
+
+            return;
+        })
+        .catch(error => {
+
+            res.status(400).json({
+                isDeleted: false,
+                error
+            })
+        })
+})
+
 export = router;
