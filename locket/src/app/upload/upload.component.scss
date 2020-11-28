@@ -15,6 +15,7 @@
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
     cursor: pointer;
 }
 
@@ -68,6 +69,12 @@
 
 .file-list:hover {
     background-color: rgb(49, 34, 34);
+}
+
+/* custom-upload-button transition */
+
+.custom-upload-button:hover {
+    background-color: rgb(2, 111, 161);
 }
 
 /* limit-text animation */
