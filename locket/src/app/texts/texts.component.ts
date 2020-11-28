@@ -11,7 +11,7 @@ import Text from '../util/type/text';
 })
 export class TextsComponent implements OnInit {
 
-  encryptedTexts: Text[];
+  encryptedTexts: Text[] = [];
 
   constructor(private locketService: LocketService) {
     this.locketService.encryptedTexts.subscribe(data => {

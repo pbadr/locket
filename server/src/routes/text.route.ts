@@ -83,9 +83,7 @@ router.route("/get/all").get(async (req: Request, res: Response) => {
                 return;
             }
 
-            res.status(200).json({
-                message: "Add more to get",
-            })
+            res.send([])
 
         })
         .catch(error => {
