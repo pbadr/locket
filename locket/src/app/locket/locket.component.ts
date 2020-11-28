@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import Text from '../util/type/text';
+
 import { LocketService } from '../services/locket.service';
 
 @Component({
@@ -12,8 +14,9 @@ import { LocketService } from '../services/locket.service';
 })
 export class LocketComponent implements OnInit {
 
+
   textValue: string = '';
-  encryptedTextObject: object;
+  encryptedText: Text;
   inputFocused: boolean = false;
 
   constructor(private locketService: LocketService) { }
@@ -40,14 +43,13 @@ export class LocketComponent implements OnInit {
 
     this.locketService.sendTextToEncrypt(textObject)
       .subscribe((response: Response | any) => {
-        console.log(response);
 
-        this.encryptedTextObject = {
-          text: response.savedText,
-        }
+        this.encryptedText = response.savedText
 
+        this.locketService.reflectChanges(this.encryptedText);
       },
-        (error: Error) => console.log(error))
+        (error: Error) => console.log(error));
   }
+
 
 }
