@@ -13,9 +13,17 @@ export class TextsComponent implements OnInit {
 
   encryptedTexts: Text[];
 
-  constructor(private locketService: LocketService) { }
+  constructor(private locketService: LocketService) {
+    this.locketService.encryptedTexts.subscribe(data => {
+      this.encryptedTexts.push(data);
+    })
+  }
 
   ngOnInit(): void {
+    this.getEncryptedTexts();
+  }
+
+  public getEncryptedTexts(): void {
 
     this.locketService.getEncryptedTexts()
       .subscribe(encryptedTexts => {
@@ -24,7 +32,5 @@ export class TextsComponent implements OnInit {
         error => {
           console.log(error);
         });
-
   }
-
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { HttpProcessingService } from '../services/http-processing.service';
 import { serverURL } from '../util/serverURL';
@@ -15,7 +15,11 @@ import Text from '../util/type/text';
 })
 export class LocketService {
 
-  constructor(private client: HttpClient, private httpProessingService: HttpProcessingService) { }
+  constructor(private client: HttpClient, private httpProessingService: HttpProcessingService) {
+  }
+
+
+  encryptedTexts: Subject<Text> = new Subject<Text>()
 
   public communicate(): Observable<Object> {
     return this.client.get<Object>(serverURL + 'communicate')
@@ -49,6 +53,10 @@ export class LocketService {
       .pipe(
         catchError(this.httpProessingService.handleError)
       );
+  }
+
+  public reflectChanges(changes: Text) {
+    this.encryptedTexts.next(changes);
   }
 
 
