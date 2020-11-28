@@ -5,13 +5,14 @@
             <label class="encryption-label" [ngClass]="{'text-input-focus': this.inputFocused}" for="encryption">Enter
                 your thoughts</label>
             <br />
-            <textarea (blur)="inputText()" (focus)="inputText()" class="text-input" #textAreaInput name="encryption"
-                type="text" (input)="onTextEnter(textAreaInput.value)"></textarea>
+            <textarea class="text-input" #textAreaInput name="encryption" type="text"
+                (input)="onTextEnter(textAreaInput.value)"></textarea>
             <br />
             <div *ngIf="textValue.length < 5">
             </div>
             <button class="submit-button" type="submit" [disabled]="textValue.length < 5"
-                (click)="textSubmit($event)"><span><img class="encrypt-icon" src="../../assets/lock.png" /></span>
+                (click)="textSubmit($event, textAreaInput)"><span><img class="encrypt-icon"
+                        src="../../assets/lock.png" /></span>
                 <div class="encrypt-text">Encrypt and
                     send</div>
             </button>

@@ -30,11 +30,10 @@ export class LocketComponent implements OnInit {
   }
 
   public onTextEnter(textValue: string): void {
-    this.textValue = textValue
-    console.log(this.textValue)
+    this.textValue = textValue;
   }
 
-  public textSubmit(event: Event): void {
+  public textSubmit(event: Event, textAreaInput: any): void {
     event.preventDefault();
 
     const textObject = {
@@ -45,6 +44,8 @@ export class LocketComponent implements OnInit {
       .subscribe((response: Response | any) => {
 
         this.encryptedText = response.savedText
+        console.log(typeof textAreaInput)
+        textAreaInput.value = '';
 
         this.locketService.reflectChanges(this.encryptedText);
       },
