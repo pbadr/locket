@@ -20,6 +20,7 @@ export class LocketService {
 
 
   encryptedTexts: Subject<Text> = new Subject<Text>()
+  setDate: Subject<string> = new Subject<string>();
 
   public communicate(): Observable<Object> {
     return this.client.get<Object>(serverURL + 'communicate')
@@ -64,6 +65,10 @@ export class LocketService {
 
   public reflectChanges(changes: Text) {
     this.encryptedTexts.next(changes);
+  }
+
+  public setDateValue(value: string) {
+    this.setDate.next(value);
   }
 
 
