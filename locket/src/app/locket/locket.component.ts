@@ -18,15 +18,20 @@ export class LocketComponent implements OnInit {
   textValue: string = '';
   encryptedText: Text;
   inputFocused: boolean = false;
+  date: string = undefined;
 
-  constructor(private locketService: LocketService) { }
+  constructor(private locketService: LocketService) {
+    this.locketService.setDate.subscribe(setDate => {
+      this.date = setDate;
+    })
+
+  }
 
   ngOnInit(): void {
   }
 
   public inputText(): void {
     this.inputFocused = !this.inputFocused;
-    console.log(this.inputFocused);
   }
 
   public onTextEnter(textValue: string): void {

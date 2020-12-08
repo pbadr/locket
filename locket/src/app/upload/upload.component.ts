@@ -12,8 +12,13 @@ export class UploadComponent implements OnInit {
   exceededLimit: boolean = false;
   file: File;
   filesList: File[] = [];
+  date: string;
 
-  constructor(private locketService: LocketService) { }
+  constructor(private locketService: LocketService) { 
+    this.locketService.setDate.subscribe(setDate => {
+      this.date = setDate;
+    })
+  }
 
   ngOnInit(): void { }
 
