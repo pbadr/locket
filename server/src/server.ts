@@ -81,7 +81,8 @@ app.post("/uploadFiles", upload.array('files'), (req: Request, res: Response) =>
 
     console.log("/uploadFiles - Uploading multiple files...");
 
-    const files = req.files
+    const files = req.files;
+    let completed = [];
 
     for (const [_, file] of Object.entries(files)) {
         console.log("/uploadFiles - File name: ", file.originalname);
@@ -95,12 +96,8 @@ app.post("/uploadFiles", upload.array('files'), (req: Request, res: Response) =>
 
             deleteFile(PATH_TO_UPLOAD_WITH_NAME + file.originalname);
 
-            res.status(200).json({
-                received: true,
-                encrypted: true,
-            });
+            completed.push(file.originalname);
 
-            return;
 
         } catch (err) {
 
@@ -115,6 +112,12 @@ app.post("/uploadFiles", upload.array('files'), (req: Request, res: Response) =>
             });
         }
     }
+
+    res.status(200).json({
+        received: true,
+        encrypted: true,
+        completed
+    });
 
 });
 
