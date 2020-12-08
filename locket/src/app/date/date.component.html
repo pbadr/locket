@@ -1,0 +1,7 @@
+<div>
+    <form [formGroup]="dateForm">
+        <label for="encryption-date">Date to unlock: </label>
+        <br />
+        <input type="date" name="encryption-date" formControlName="currentDate" (input)="onDateSet()" />
+    </form>
+</div>

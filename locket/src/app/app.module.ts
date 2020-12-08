@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Components
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { HttpProcessingService } from './services/http-processing.service';
 import { serverURL } from './util/serverURL';
 import { TextsComponent } from './texts/texts.component';
 import { TextComponent } from './text/text.component';
+import { DateComponent } from './date/date.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,15 @@ import { TextComponent } from './text/text.component';
     LocketComponent,
     UploadComponent,
     TextsComponent,
-    TextComponent
+    TextComponent,
+    DateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     LocketService,
