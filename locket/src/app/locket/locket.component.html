@@ -1,7 +1,7 @@
 <div class="locket-container">
     <app-upload></app-upload>
     <div>
-        <form>
+        <form [formGroup]="">
             <label class="encryption-label" [ngClass]="{'text-input-focus': this.inputFocused}" for="encryption">Enter
                 your thoughts</label>
             <br />
@@ -10,7 +10,7 @@
             <br />
             <div *ngIf="textValue.length < 5">
             </div>
-            <button class="submit-button" type="submit" [disabled]="textValue.length < 5"
+            <button class="submit-button" type="submit" [disabled]="textValue.length < 5 || date == undefined"
                 (click)="textSubmit($event, textAreaInput)"><span><img class="encrypt-icon"
                         src="../../assets/lock.png" /></span>
                 <div class="encrypt-text">Encrypt and
@@ -25,4 +25,5 @@
         </div> -->
     </div>
     <app-texts></app-texts>
+    <app-date></app-date>
 </div>
